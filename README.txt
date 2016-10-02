@@ -1,9 +1,8 @@
 Apache configuration.
 
- please copy mod_jk.so file to %apache_folder%/modules folder
+Please copy mod_jk.so file to %apache_folder%/modules folder
 
-create in the %apache_folder%/conf folder worker.properties file
-with content
+Create in the %apache_folder%/conf folder worker.properties file with content
     worker.list=module11
     worker.module11.type=ajp13
     worker.module11.host=localhost
@@ -33,27 +32,28 @@ for apache 2.2
         Order allow,deny
         Allow from all
     </Directory>
-
-Tomcat.
-in the tomcat-users.xml file specify roles and define user with password and roles
+=========================================================================================
+Tomcat (was tested on the 7.0.72 version).
+In the tomcat-users.xml file specify roles and define user with password and roles like
 
   <role rolename="manager-gui"/>
   <role rolename="manager-script"/>
   <user username="manager" password="manager" roles="manager-gui,manager-script"/>
-
+=========================================================================================
 Maven.
 Add server into settings.xml maven file
-	<server>
-      <id>module11Server</id>
-      <username>manager</username>
-      <password>manager</password>
+    <server>
+        <id>module11Server</id>
+        <username>manager</username>
+        <password>manager</password>
     </server>
 
-Specify the same folder as "%folder_which_contains_published_files%" in the pom.xml for the static module for static.output.directory
+Specify the same folder as "%folder_which_contains_published_files%" in the pom.xml for
+the static module for static.output.directory
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <static.output.directory>"%folder_which_contains_published_files%"</static.output.directory>
     </properties>
-
+=========================================================================================
 Running.
 clean install tomcat7:deploy
