@@ -1,6 +1,6 @@
 Apache configuration.
 
-for apache 2.4 version please copy mod_jk.so file to %apache_folder%/modules folder
+ please copy mod_jk.so file to %apache_folder%/modules folder
 
 create in the %apache_folder%/conf folder worker.properties file
 with content
@@ -18,6 +18,7 @@ Add to the following lines into %apache_folder%/conf/httpd.conf
     JkUnMount /module11/resources/* module11
     JkMount  /module11/* module11
 
+for apache 2.4
     Alias /module11/resources "%folder_which_contains_published_files%"
     <Directory "folder_which_contains_published_files%">
         Options Indexes FollowSymLinks MultiViews
@@ -25,15 +26,20 @@ Add to the following lines into %apache_folder%/conf/httpd.conf
         Require all granted
     </Directory>
 
+for apache 2.2
+    <Directory "folder_which_contains_published_files%">
+        Options Indexes MultiViews
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
 
 Tomcat.
 in the tomcat-users.xml file specify roles and define user with password and roles
 
   <role rolename="manager-gui"/>
-  <role rolename="manager"/>
-  <role rolename="tomcat"/>
   <role rolename="manager-script"/>
-  <user username="manager" password="manager" roles="manager-gui,admin-gui,manager-script,manager"/>
+  <user username="manager" password="manager" roles="manager-gui,manager-script"/>
 
 Maven.
 Add server into settings.xml maven file

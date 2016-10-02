@@ -203,7 +203,6 @@
                 <configuration>
                     <server>module11Server</server>
                     <path>/module11</path>
-                    <update>true</update>
                     <username>manager</username>
                     <password>manager</password>
                 </configuration>
